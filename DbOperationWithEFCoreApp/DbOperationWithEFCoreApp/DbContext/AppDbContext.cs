@@ -1,6 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+
 namespace DbOperationWithEFCoreApp
 {
     public class AppDbContext : DbContext
@@ -9,5 +9,9 @@ namespace DbOperationWithEFCoreApp
         {
 
         }
+
+        public DbSet<Book> BooksTable { get; set; }
+        public DbSet<Language> languageTable { get; set; }
+
     }
 }

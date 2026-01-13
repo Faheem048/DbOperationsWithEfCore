@@ -4,6 +4,7 @@ using DbOperationWithEFCoreApp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbOperationWithEFCoreApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260109103851_addnewclasses")]
+    partial class addnewclasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,9 +82,6 @@ namespace DbOperationWithEFCoreApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId")
-                        .IsUnique();
-
                     b.HasIndex("currencyTypeId");
 
                     b.ToTable("BookPrices");
@@ -106,32 +106,6 @@ namespace DbOperationWithEFCoreApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CurrencyTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Currency = "PKR",
-                            Description = "Pakistani Rupees"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Currency = "INR",
-                            Description = "Indian Rupees"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Currency = "Dollar",
-                            Description = "USA Dollar"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Currency = "Euro",
-                            Description = "European Euro"
-                        });
                 });
 
             modelBuilder.Entity("DbOperationWithEFCoreApp.Language", b =>
@@ -153,32 +127,6 @@ namespace DbOperationWithEFCoreApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("languageTable");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "English Language",
-                            Title = "English"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Indian Language",
-                            Title = "Hindi"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Pakistani Language",
-                            Title = "Urdu"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "European Language",
-                            Title = "Spanish"
-                        });
                 });
 
             modelBuilder.Entity("DbOperationWithEFCoreApp.Book", b =>
@@ -194,12 +142,6 @@ namespace DbOperationWithEFCoreApp.Migrations
 
             modelBuilder.Entity("DbOperationWithEFCoreApp.BookPrice", b =>
                 {
-                    b.HasOne("DbOperationWithEFCoreApp.Book", null)
-                        .WithOne("BookPrice")
-                        .HasForeignKey("DbOperationWithEFCoreApp.BookPrice", "BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DbOperationWithEFCoreApp.CurrencyType", "currencyType")
                         .WithMany()
                         .HasForeignKey("currencyTypeId")
@@ -207,12 +149,6 @@ namespace DbOperationWithEFCoreApp.Migrations
                         .IsRequired();
 
                     b.Navigation("currencyType");
-                });
-
-            modelBuilder.Entity("DbOperationWithEFCoreApp.Book", b =>
-                {
-                    b.Navigation("BookPrice")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DbOperationWithEFCoreApp.Language", b =>

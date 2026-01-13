@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbOperationWithEFCoreApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260108132238_Initmigration")]
-    partial class Initmigration
+    [Migration("20260109100326_InitMigration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,9 +42,6 @@ namespace DbOperationWithEFCoreApp.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<int>("LanId")
-                        .HasColumnType("int");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");

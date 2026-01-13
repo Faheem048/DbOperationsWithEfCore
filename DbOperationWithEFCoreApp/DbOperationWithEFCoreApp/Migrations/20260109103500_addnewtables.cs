@@ -5,7 +5,7 @@
 namespace DbOperationWithEFCoreApp.Migrations
 {
     /// <inheritdoc />
-    public partial class Initmigration : Migration
+    public partial class addnewtables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
